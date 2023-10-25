@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@model AnimeApp.Models.Anime
+
+<head>
+    <link rel="stylesheet" href="~/css/mystyles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="inner-content">
+            <div class="header">
+                <div class="anime-wraper">
+                    <img class="anime-cover" src="@Model.CoverUrl" alt="Монстр" />
+                    <div class="anime-info">
+                        <div class="anime-title"> @Model.Title </div>
+                        <div class="anime-release-year"> @Model.ReleaseYear </div>
+                        <div class="anime-description"> @Model.Description</div>
+                    </div>
+                    <button asp-controller="Animes" asp-action="AddAnimeToUser" formmethod="get" class="btn-watched" id="watchButton" data-anime-id=@Model.AnimeId>Буду смотреть</button>
+                    <h1>AnimeId = @Model.AnimeId</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="/js/watch_button.js"></script>

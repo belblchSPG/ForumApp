@@ -1,0 +1,105 @@
+﻿.form-control {
+    display: block;
+    padding: .75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: rgba(0,0,0,0.15);
+    background-clip: padding-box;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    border-width: 2px;
+    width: 200px;
+    border-color: black;
+}
+
+.anime-wraper {
+    background: radial-gradient(100% 100% at 100% 0%, #232328 0%, #1C1C20 100%);
+    border: 3px solid rgba(255,255,255,.06);
+    border-radius: 25px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 300px 2fr;
+    grid-gap: 120px;
+    cursor: default !important;
+}
+
+.inner-content{
+    padding-top:40px;
+}
+
+.anime-title{
+    font-size: 60px;
+    font-weight: 500;
+    margin-top:5px;
+}
+
+.anime-release-year {
+    font-size:25px;
+    font-weight:400;
+    color:silver;
+}
+
+.anime-description {
+    font-size: 25px;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+.anime-cover{
+    pointer-events:none;
+    width:auto;
+    height:500px;
+}
+
+.test{
+    color:red;
+}
+
+.btn-watched {
+    will-change: transform;
+    background-color: #333; /* Задайте цвет фона кнопки для темного фона */
+    color: #fff; /* Задайте цвет текста кнопки */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    border-color: red;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.2s, color 0.2s; /* Добавьте плавные анимации */
+    font-family: Arial, sans-serif; /* Шрифт текста */
+    font-size: 20px; /* Размер шрифта */
+    font-weight: 300; /* Насыщенность шрифта */
+    text-align: center; /* Выравнивание текста по центру */
+    letter-spacing:1px;
+}
+
+    .btn-watched:hover {
+        transform: scale(1.03); /* Увеличьте размер кнопки при наведении */
+        background-color: #DCDCDC; /* Измените цвет фона при наведении */
+        color: #000; /* Измените цвет текста при наведении */
+    }
+
+    .btn-watched:active {
+        background-color: #B0B0B0;
+    }
+
+    .btn-watched.watched {
+        background-color: #DCDCDC; /* Цвет фона для состояния "посмотрено" */
+        color: #000; /* Цвет текста для состояния "посмотрено" */
+    }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+label[for="Title"] ::after{
+    background-color:red;
+}
+

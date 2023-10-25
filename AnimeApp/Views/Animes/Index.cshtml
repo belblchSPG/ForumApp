@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Anime>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/mystyles.css"/>
+</head>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th style="text-align:center; width:130px">
+                Anime Title
+            </th>
+            <th style="text-align:center; font-size:large">
+                Description
+            </th>
+            <th style="text-align:center; vertical-align:middle;width:150px">
+                Release Year
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th style="text-align:center; vertical-align:middle;width:150px">
+                    Actions
+                </th>
+            }
+        </tr>
+    </thead>
+    @if(User.IsInRole("Admin"))
+    {
+        <a type="submit" class=" btn btn-dark btn-lg mt-5" asp-controller="Admin" asp-action="AddNewAnime">Add Anime</a>
+    }
+    
+    <form asp-action="Index" method="get" >
+        <div class="input-group mt-2 mb-5">
+            <input type="text" name="SearchString"  value="@ViewData["CurrentSearchString"]" class="form-control" placeholder="Search your anime!"/>
+            <input type="submit" value="Search" class="btn btn-dark btn-lg" 
+                style="font-size:18px; font-weight:400"/>
+
+            </div>
+
+
+    </form>
+
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr> 
+                <td style="text-align: center; vertical-align: middle;">
+                    <a asp-action="Anime" asp-route-animeId="@obj.AnimeId" class="nav-link">@obj.Title</a>
+                </td>
+                <td>
+                    @obj.Description
+                </td>
+                <td style="text-align: center; vertical-align: middle;">
+                    @obj.ReleaseYear
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                <td style="text-align: center; vertical-align: middle; width:50px">
+                    <div class="btn-group btn-group-sm" role="group">
+                            <a asp-controller="Admin" asp-action="DeleteAnime" asp-route-animeId="@obj.AnimeId" class="btn btn-primary delete-anime">
+                                <i class="bi bi-trash3"></i>
+                            </a>
+
+                        <a asp-controller="Admin" asp-action="Edit" asp-route-animeId="@obj.AnimeId" class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </div>
+                </td>
+                    
+                }
+            </tr>
+        }
+    </tbody>
+
+</table>
+

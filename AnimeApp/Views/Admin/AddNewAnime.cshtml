@@ -1,0 +1,65 @@
+﻿@model Anime
+@{
+    ViewData["Title"] = "AddNewAnime";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/mystyles.css" />
+</head>
+
+<body>
+    <h1>Add new Anime</h1>
+
+    <div class="col-md-4">
+        <div class=" p-3 mt-4">
+            <form id="new_anime" enctype="multipart/form-data" method="post">
+                <div class="form-floating mb-3">
+                    <textarea asp-for="Title" class="form-control" autocomplete="Title" name="Title" style="width:500px; height:100px; resize:none" maxlength="150"></textarea>
+                    <label asp-for="Title"></label>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div> 
+                <div class="form-floating mb-3">
+                    <textarea asp-for="Description" class="form-control" autocomplete="Description" name="Description" style="width:500px; height:200px;resize:none;f" rows="4" maxlength="400"></textarea>
+                    <label asp-for="Description"></label>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" id="ReleaseYear" asp-for="ReleaseYear" class="form-control" autocomplete="ReleaseYear" name="ReleaseYear" style="width:200px; height:80px" />
+                    <label asp-for="ReleaseYear" class="mt-3"></label>
+                    <div id="yearRangeMessage" style="color: red; display: none;">Год должен быть в диапазоне 1901-2100</div>
+                    <span asp-validation-for="ReleaseYear"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cover" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="Cover" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <span asp-validation-for="Cover" class="text-danger"></span>
+                </div>
+                <button class="btn-watched" type="submit" onclick="validateReleaseYear()">
+                    Add
+                </button>
+                <button class="btn-watched" type="submit" asp-controller="Animes" asp-action="Index">
+                    Back to list
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    function validateReleaseYear() {
+        var releaseYearInput = document.getElementById("ReleaseYear");
+        var yearRangeMessage = document.getElementById("yearRangeMessage");
+        var releaseYear = parseInt(releaseYearInput.value);
+
+        if (releaseYear < 1901 || releaseYear > 2100) {
+            yearRangeMessage.style.display = "block"; // Показать сообщение об ошибке
+            event.preventDefault(); // Остановить отправку формы
+        } else {
+            yearRangeMessage.style.display = "none"; // Скрыть сообщение об ошибке, если значение валидное
+        }
+    }
+</script>

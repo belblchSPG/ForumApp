@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to my Anime Forum!</h1>
+
+    @if(User.IsInRole("Admin"))
+    {
+        <h1>What`s up my lil` Admin!</h1>
+    }
+</div>

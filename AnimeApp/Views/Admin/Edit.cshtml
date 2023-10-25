@@ -1,0 +1,56 @@
+﻿@model Anime
+@{
+    ViewData["Title"] = "Edit Anime";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/mystyles.css" />
+</head>
+
+<body>
+    <h1>Edit Anime</h1>
+
+    <div class="col-md-4">
+        <div class=" p-3 mt-4">
+            <form asp-action="Edit" asp-controller="Animes">
+                <input type="hidden" asp-for="AnimeId" /> <!-- Hidden field for AnimeId -->
+                <div class="form-floating mb-3">
+                    <textarea asp-for="Title" class="form-control" autocomplete="Title" name="Title" style="width:500px; height:100px; resize:none" maxlength="150"></textarea>
+                    <label asp-for="Title"></label>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea asp-for="Description" class="form-control" autocomplete="Description" name="Description" style="width:500px; height:200px;resize:none" rows="4" maxlength="400"></textarea>
+                    <label asp-for="Description"></label>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" asp-for="ReleaseYear" class="form-control" autocomplete="off" />
+                    <label asp-for="ReleaseYear"></label>
+                    <div id="yearRangeMessage" style="color: red; display: none;">Year should be in the range 1901-2100</div>
+                    <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+                </div>
+                <button asp-controller="Admin" asp-action="Edit" asp-route-model="@Model" class="btn-watched" type="submit" onclick="validateReleaseYear()">
+                    Save
+                </button>
+                <button class="btn-watched" asp-action="Index" asp-controller="Animes">Back to List</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    function validateReleaseYear() {
+        var releaseYearInput = document.querySelector("[name='ReleaseYear']");
+        var yearRangeMessage = document.getElementById("yearRangeMessage");
+        var releaseYear = parseInt(releaseYearInput.value);
+
+        if (releaseYear < 1901 || releaseYear > 2100) {
+            yearRangeMessage.style.display = "block"; // Show error message
+            event.preventDefault(); // Stop form submission
+        } else {
+            yearRangeMessage.style.display = "none"; // Hide error message if the value is valid
+        }
+    }
+</script>
